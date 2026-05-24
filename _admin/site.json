@@ -1,7 +1,7 @@
 {
   "title": "lance.net",
   "favicon": "lance.jpeg",
-  "autoUpdateLinks": false,
+  "autoUpdateLinks": true,
   "titleMode": "prepend",
   "autoCloseTags": false,
   "linkColor": "#0000fe",

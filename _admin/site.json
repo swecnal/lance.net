@@ -11,8 +11,8 @@
   "centerNavMobile": true,
   "pageOrder": [
     "index",
-    "nostalgia",
     "about",
+    "nostalgia",
     "builder",
     "contact",
     "projects",

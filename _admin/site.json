@@ -1,4 +1,6 @@
 {
   "title": "lance.net",
-  "favicon": null
+  "favicon": null,
+  "autoUpdateLinks": false,
+  "titleMode": "append"
 }

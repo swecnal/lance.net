@@ -2,5 +2,6 @@
   "title": "lance.net",
   "favicon": "lance.jpeg",
   "autoUpdateLinks": false,
-  "titleMode": "prepend"
+  "titleMode": "prepend",
+  "autoCloseTags": false
 }

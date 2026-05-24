@@ -8,5 +8,15 @@
   "vlinkColor": "#0000fe",
   "alinkColor": "#00eefe",
   "openExternalInNewTab": true,
-  "centerNavMobile": true
+  "centerNavMobile": true,
+  "pageOrder": [
+    "index",
+    "nostalgia",
+    "about",
+    "builder",
+    "contact",
+    "projects",
+    "resume",
+    "vanlife"
+  ]
 }

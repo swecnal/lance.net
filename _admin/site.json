@@ -11,12 +11,20 @@
   "centerNavMobile": true,
   "pageOrder": [
     "index",
-    "about",
     "projects",
     "vanlife",
     "resume",
     "nostalgia",
     "builder",
     "contact"
-  ]
+  ],
+  "h1FontSize": null,
+  "h1FontWeight": null,
+  "h1Color": null,
+  "h2FontSize": null,
+  "h2FontWeight": null,
+  "h2Color": null,
+  "h3FontSize": null,
+  "h3FontWeight": null,
+  "h3Color": null
 }

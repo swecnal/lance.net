@@ -11,6 +11,8 @@ a:link { color: #0000fe; }
 a:visited { color: #0000fe; }
 a:active { color: #00eefe; }
 @media (max-width: 600px) { nav { text-align: center; } nav li { margin: 0 0.5em; } }
+body { padding-bottom: 3.5em; }
+.counter { position: fixed; bottom: 0; left: 0; text-align: left; padding: 0.6em 1em 0.6em 2em; background: #fff; font-size: 0.9em; z-index: 100; }
 </style>
 </head>
 <body>
@@ -43,8 +45,8 @@ a:active { color: #00eefe; }
 
 <p><a href="https://sites.lance.net/" target="_blank">build your site!</a></main>
 
-<div class="counter" style="clear:both;text-align:center;padding:3em 0 1em;font-size:0.9em;">
-<span class="counter-label">(blank)</span><span class="counter-number" data-counter>&hellip;</span><span class="counter-label"></span>
+<div class="counter">
+<span class="counter-label">visitor </span><span class="counter-number" data-counter>&hellip;</span><span class="counter-label"></span>
 </div>
 <script src="https://admin.lance.net/api/counter?scope=lance_net" defer></script>
 </body>

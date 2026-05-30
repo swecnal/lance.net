@@ -20,13 +20,13 @@
   "h3Color": null,
   "showVisitCounter": true,
   "counterBeforeText": "you are visitor ",
-  "counterAfterText": " to this site",
+  "counterAfterText": null,
   "counterNumberColor": null,
   "counterNumberFont": "\"Courier New\", Courier, monospace",
   "counterLabelColor": null,
   "counterLabelFont": null,
-  "counterBorderStyle": "dotted",
+  "counterBorderStyle": null,
   "counterBorderWidth": 1,
   "counterBorderColor": null,
-  "counterPadDigits": 4
+  "counterPadDigits": 6
 }

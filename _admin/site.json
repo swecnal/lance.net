@@ -24,5 +24,9 @@
   "counterNumberColor": null,
   "counterNumberFont": "\"Courier New\", Courier, monospace",
   "counterLabelColor": null,
-  "counterLabelFont": null
+  "counterLabelFont": null,
+  "counterBorderStyle": "dotted",
+  "counterBorderWidth": 1,
+  "counterBorderColor": null,
+  "counterPadDigits": 4
 }

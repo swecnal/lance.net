@@ -22,7 +22,7 @@
   "counterBeforeText": null,
   "counterAfterText": null,
   "counterNumberColor": null,
-  "counterNumberFont": null,
+  "counterNumberFont": "\"Courier New\", Courier, monospace",
   "counterLabelColor": null,
   "counterLabelFont": null
 }

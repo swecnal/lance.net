@@ -18,7 +18,7 @@
   "h3FontSize": null,
   "h3FontWeight": null,
   "h3Color": null,
-  "showVisitCounter": true,
+  "showVisitCounter": false,
   "counterBeforeText": "you are visitor ",
   "counterAfterText": null,
   "counterNumberColor": null,
@@ -28,5 +28,6 @@
   "counterBorderStyle": null,
   "counterBorderWidth": 1,
   "counterBorderColor": null,
-  "counterPadDigits": 6
+  "counterPadDigits": 6,
+  "counterStartAt": null
 }

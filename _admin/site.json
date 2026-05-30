@@ -19,7 +19,7 @@
   "h3FontWeight": null,
   "h3Color": null,
   "showVisitCounter": true,
-  "counterBeforeText": "(blank)",
+  "counterBeforeText": null,
   "counterAfterText": null,
   "counterNumberColor": null,
   "counterNumberFont": null,

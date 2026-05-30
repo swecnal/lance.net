@@ -18,7 +18,7 @@
   "h3FontSize": null,
   "h3FontWeight": null,
   "h3Color": null,
-  "showVisitCounter": false,
+  "showVisitCounter": true,
   "counterBeforeText": "you are visitor ",
   "counterAfterText": null,
   "counterNumberColor": null,

@@ -25,6 +25,8 @@
   "counterNumberFont": "\"Courier New\", Courier, monospace",
   "counterLabelColor": null,
   "counterLabelFont": null,
+  "counterNumberWeight": "600",
+  "counterLabelWeight": null,
   "counterBorderStyle": null,
   "counterBorderWidth": 1,
   "counterBorderColor": null,

@@ -34,5 +34,6 @@
   "counterStartAt": 1111,
   "counterTopText": "you are visitor",
   "counterBottomText": null,
+  "counterAlignment": "center",
   "photoboxClassName": "gallery"
 }

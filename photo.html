@@ -40,7 +40,65 @@ body { padding-bottom: 3.5em; }
 
 <p>click any photo to open full-size in a new tab.</p>
 
-</main>
+<style>
+    body {
+      margin: 0;
+      padding: 20px;
+      background: #111;
+      font-family: sans-serif;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .gallery a {
+      display: block;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .gallery a:hover img {
+      transform: scale(1.05);
+    }
+  </style>
+
+  <div class="gallery">
+    <a href="/pics/DSCF0042.png" target="_blank"><img src="/pics/thumb-DSCF0042.png" alt="DSCF0042"></a>
+    <a href="/pics/DSCF0105.png" target="_blank"><img src="/pics/thumb-DSCF0105.png" alt="DSCF0105"></a>
+    <a href="/pics/DSCF0120.png" target="_blank"><img src="/pics/thumb-DSCF0120.png" alt="DSCF0120"></a>
+    <a href="/pics/DSCF0209.png" target="_blank"><img src="/pics/thumb-DSCF0209.png" alt="DSCF0209"></a>
+    <a href="/pics/DSCF0252.png" target="_blank"><img src="/pics/thumb-DSCF0252.png" alt="DSCF0252"></a>
+    <a href="/pics/DSCF0330.png" target="_blank"><img src="/pics/thumb-DSCF0330.png" alt="DSCF0330"></a>
+    <a href="/pics/DSCF0468.png" target="_blank"><img src="/pics/thumb-DSCF0468.png" alt="DSCF0468"></a>
+    <a href="/pics/DSCF0534.png" target="_blank"><img src="/pics/thumb-DSCF0534.png" alt="DSCF0534"></a>
+    <a href="/pics/DSCF1060-Enhanced-NR.png" target="_blank"><img src="/pics/thumb-DSCF1060-Enhanced-NR.png" alt="DSCF1060-Enhanced-NR"></a>
+    <a href="/pics/DSCF1190-Enhanced-NR-1.png" target="_blank"><img src="/pics/thumb-DSCF1190-Enhanced-NR-1.png" alt="DSCF1190-Enhanced-NR-1"></a>
+    <a href="/pics/DSCF1768.png" target="_blank"><img src="/pics/thumb-DSCF1768.png" alt="DSCF1768"></a>
+    <a href="/pics/DSCF1792.png" target="_blank"><img src="/pics/thumb-DSCF1792.png" alt="DSCF1792"></a>
+    <a href="/pics/DSCF1801.png" target="_blank"><img src="/pics/thumb-DSCF1801.png" alt="DSCF1801"></a>
+    <a href="/pics/DSCF1831.png" target="_blank"><img src="/pics/thumb-DSCF1831.png" alt="DSCF1831"></a>
+    <a href="/pics/DSCF1912.png" target="_blank"><img src="/pics/thumb-DSCF1912.png" alt="DSCF1912"></a>
+    <a href="/pics/DSCF1945.png" target="_blank"><img src="/pics/thumb-DSCF1945.png" alt="DSCF1945"></a>
+    <a href="/pics/DSCF1970.png" target="_blank"><img src="/pics/thumb-DSCF1970.png" alt="DSCF1970"></a>
+    <a href="/pics/DSCF2026.png" target="_blank"><img src="/pics/thumb-DSCF2026.png" alt="DSCF2026"></a>
+    <a href="/pics/DSCF2048.png" target="_blank"><img src="/pics/thumb-DSCF2048.png" alt="DSCF2048"></a>
+    <a href="/pics/DSCF2064.png" target="_blank"><img src="/pics/thumb-DSCF2064.png" alt="DSCF2064"></a>
+    <a href="/pics/DSCF2120.png" target="_blank"><img src="/pics/thumb-DSCF2120.png" alt="DSCF2120"></a>
+    <a href="/pics/DSCF2130.png" target="_blank"><img src="/pics/thumb-DSCF2130.png" alt="DSCF2130"></a>
+    <a href="/pics/DSCF2171.png" target="_blank"><img src="/pics/thumb-DSCF2171.png" alt="DSCF2171"></a>
+    <a href="/pics/DSCF2211.png" target="_blank"><img src="/pics/thumb-DSCF2211.png" alt="DSCF2211"></a>
+    <a href="/pics/DSCF2247.png" target="_blank"><img src="/pics/thumb-DSCF2247.png" alt="DSCF2247"></a>
+    <a href="/pics/DSCF2864.png" target="_blank"><img src="/pics/thumb-DSCF2864.png" alt="DSCF2864"></a>
+    <a href="/pics/DSCF8834.png" target="_blank"><img src="/pics/thumb-DSCF8834.png" alt="DSCF8834"></a>
+    <a href="/pics/DSCF22472.png" target="_blank"><img src="/pics/thumb-DSCF22472.png" alt="DSCF22472"></a>
+  </div></main>
 
 <div class="counter">
 <span class="counter-label">you are visitor </span><span class="counter-number" style="font-family:"Courier New", Courier, monospace" data-counter>&hellip;</span><span class="counter-label"></span>

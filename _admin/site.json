@@ -9,16 +9,6 @@
   "alinkColor": "#00eefe",
   "openExternalInNewTab": true,
   "centerNavMobile": true,
-  "pageOrder": [
-    "index",
-    "builder",
-    "contact",
-    "photo",
-    "nostalgia",
-    "projects",
-    "resume",
-    "vanlife"
-  ],
   "h1FontSize": null,
   "h1FontWeight": null,
   "h1Color": null,
@@ -41,5 +31,6 @@
   "counterBorderWidth": 1,
   "counterBorderColor": null,
   "counterPadDigits": 6,
-  "counterStartAt": 1111
+  "counterStartAt": 1111,
+  "photoboxClassName": "gallery"
 }

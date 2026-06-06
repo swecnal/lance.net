@@ -11,6 +11,19 @@ a:link { color: #0000fe; }
 a:visited { color: #0000fe; }
 a:active { color: #00eefe; }
 @media (max-width: 600px) { nav { text-align: center; } nav li { margin: 0 0.5em; } }
+#lance-lb { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 10000; cursor: zoom-out; }
+#lance-lb.open { display: flex; }
+#lance-lb .lance-lb-img { max-width: 95vw; max-height: 92vh; object-fit: contain; user-select: none; box-shadow: 0 4px 24px rgba(0,0,0,0.6); cursor: default; }
+#lance-lb button { position: absolute; background: rgba(255,255,255,0.08); color: #fff; border: 0; cursor: pointer; padding: 6px 14px; line-height: 1; font-family: inherit; }
+#lance-lb button:hover { background: rgba(255,255,255,0.2); }
+#lance-lb .lance-lb-close { top: 14px; right: 18px; font-size: 30px; padding: 2px 12px; }
+#lance-lb .lance-lb-prev, #lance-lb .lance-lb-next { top: 50%; transform: translateY(-50%); font-size: 36px; padding: 8px 18px; }
+#lance-lb .lance-lb-prev { left: 18px; }
+#lance-lb .lance-lb-next { right: 18px; }
+#lance-lb .lance-lb-counter { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.5px; }
+@media (max-width: 600px) {
+  #lance-lb .lance-lb-prev, #lance-lb .lance-lb-next { font-size: 28px; padding: 6px 12px; }
+}
 body { padding-bottom: 3.5em; }
 .counter { position: fixed; bottom: 0; left: 0; text-align: left; padding: 0.6em 1em 0.6em 2em; background: #fff; font-size: 0.9em; z-index: 100; }
 @media (max-width: 600px) { body { padding-bottom: 1em; } .counter { position: static; left: auto; bottom: auto; text-align: center; padding: 1em; margin-top: 2em; background: transparent; z-index: auto; } }
@@ -52,5 +65,74 @@ body { padding-bottom: 3.5em; }
 <span class="counter-label">you are visitor </span><span class="counter-number" style="font-family:"Courier New", Courier, monospace" data-counter>&hellip;</span><span class="counter-label"></span>
 </div>
 <script src="https://admin.lance.net/api/counter?scope=lance_net&pad=6&start=1111" defer></script>
+<script>
+(function(){
+  var CLASS="gallery";
+  if(!CLASS)return;
+  var IMG=/\.(jpe?g|png|webp|gif|avif|bmp|svg)(\?|#|$)/i;
+  var overlay,imgEl,counterEl,srcs=[],cur=0;
+  function build(){
+    overlay=document.createElement('div');
+    overlay.id='lance-lb';
+    overlay.innerHTML='<button class="lance-lb-close" aria-label="Close">\u00d7</button>'+
+      '<button class="lance-lb-prev" aria-label="Previous">\u2039</button>'+
+      '<button class="lance-lb-next" aria-label="Next">\u203a</button>'+
+      '<img class="lance-lb-img" alt="">'+
+      '<div class="lance-lb-counter"></div>';
+    document.body.appendChild(overlay);
+    imgEl=overlay.querySelector('.lance-lb-img');
+    counterEl=overlay.querySelector('.lance-lb-counter');
+    overlay.querySelector('.lance-lb-close').addEventListener('click',function(e){e.stopPropagation();closeLb();});
+    overlay.querySelector('.lance-lb-prev').addEventListener('click',function(e){e.stopPropagation();prev();});
+    overlay.querySelector('.lance-lb-next').addEventListener('click',function(e){e.stopPropagation();next();});
+    imgEl.addEventListener('click',function(e){e.stopPropagation();});
+    overlay.addEventListener('click',function(e){if(e.target===overlay)closeLb();});
+  }
+  function openLb(images,startIdx){
+    if(!overlay)build();
+    srcs=images;cur=startIdx;
+    update();
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    document.addEventListener('keydown',onKey);
+  }
+  function closeLb(){
+    if(!overlay)return;
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',onKey);
+  }
+  function update(){
+    imgEl.src=srcs[cur];
+    counterEl.textContent=(cur+1)+' / '+srcs.length;
+  }
+  function prev(){cur=(cur-1+srcs.length)%srcs.length;update();}
+  function next(){cur=(cur+1)%srcs.length;update();}
+  function onKey(e){
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowLeft')prev();
+    else if(e.key==='ArrowRight')next();
+  }
+  function init(){
+    var galleries=document.getElementsByClassName(CLASS);
+    for(var g=0;g<galleries.length;g++){
+      var links=galleries[g].querySelectorAll('a');
+      var imgs=[];
+      for(var i=0;i<links.length;i++){if(IMG.test(links[i].href))imgs.push(links[i]);}
+      if(!imgs.length)continue;
+      var hrefs=imgs.map(function(a){return a.href;});
+      imgs.forEach(function(a,idx){
+        a.addEventListener('click',function(e){
+          if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1)return; // let middle/cmd-click open in tab
+          e.preventDefault();
+          openLb(hrefs,idx);
+        });
+      });
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
 </body>
 </html>

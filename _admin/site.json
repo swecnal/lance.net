@@ -19,7 +19,7 @@
   "h3FontWeight": null,
   "h3Color": null,
   "showVisitCounter": true,
-  "counterBeforeText": "you are visitor ",
+  "counterBeforeText": null,
   "counterAfterText": null,
   "counterNumberColor": null,
   "counterNumberFont": "\"Courier New\", Courier, monospace",
@@ -32,5 +32,7 @@
   "counterBorderColor": null,
   "counterPadDigits": 6,
   "counterStartAt": 1111,
+  "counterTopText": "you are visitor",
+  "counterBottomText": null,
   "photoboxClassName": "gallery"
 }

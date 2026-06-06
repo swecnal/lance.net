@@ -9,6 +9,9 @@
   "alinkColor": "#00eefe",
   "openExternalInNewTab": true,
   "centerNavMobile": true,
+  "pageOrder": [
+    "photo"
+  ],
   "h1FontSize": null,
   "h1FontWeight": null,
   "h1Color": null,

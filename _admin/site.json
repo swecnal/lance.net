@@ -10,7 +10,14 @@
   "openExternalInNewTab": true,
   "centerNavMobile": true,
   "pageOrder": [
-    "photo"
+    "index",
+    "builder",
+    "contact",
+    "photo",
+    "nostalgia",
+    "projects",
+    "resume",
+    "vanlife"
   ],
   "h1FontSize": null,
   "h1FontWeight": null,

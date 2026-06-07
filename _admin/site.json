@@ -35,5 +35,15 @@
   "counterTopText": "you are visitor",
   "counterBottomText": null,
   "counterAlignment": "center",
-  "photoboxClassName": "gallery"
+  "photoboxClassName": "gallery",
+  "guestbookEnabled": false,
+  "guestbookLinkPosition": "below",
+  "guestbookLinkText": null,
+  "guestbookLinkColor": null,
+  "guestbookLinkFont": null,
+  "guestbookLinkWeight": null,
+  "guestbookLinkItalic": false,
+  "guestbookLinkUnderline": true,
+  "navFont": "\"Chicago\", \"ChicagoFLF\", sans-serif",
+  "contentFont": "\"Chicago\", \"ChicagoFLF\", sans-serif"
 }

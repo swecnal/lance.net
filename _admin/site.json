@@ -44,6 +44,6 @@
   "guestbookLinkWeight": null,
   "guestbookLinkItalic": false,
   "guestbookLinkUnderline": true,
-  "navFont": "\"Chicago\", \"ChicagoFLF\", sans-serif",
-  "contentFont": "\"Chicago\", \"ChicagoFLF\", sans-serif"
+  "navFont": "\"ChicagoFLF\", \"Chicago\", sans-serif",
+  "contentFont": "\"ChicagoFLF\", \"Chicago\", sans-serif"
 }

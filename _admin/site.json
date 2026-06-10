@@ -62,6 +62,17 @@
       "contentFont": null,
       "contentFontWeight": null,
       "contentColor": null
+    },
+    {
+      "id": "2889e11e-5e3e-472d-b88f-b1ff909dfcbd",
+      "name": "matrix",
+      "bgColor": "#000000",
+      "navFont": null,
+      "navFontWeight": "600",
+      "navColor": "#00ff41",
+      "contentFont": null,
+      "contentFontWeight": "600",
+      "contentColor": "#00ff41"
     }
   ],
   "themeSwitcherEnabled": true

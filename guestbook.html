@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lance.net - guestbook</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="/lance.jpeg">
+<style>
+a:link { color: #0000fe; }
+a:visited { color: #0000fe; }
+a:active { color: #00eefe; }
+@media (max-width: 600px) { nav { text-align: center; } nav li { margin: 0 0.5em; } }
+nav { font-family: "Times New Roman", Times, serif; }
+main { font-family: Monaco, monospace; }
+#lance-lb { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 10000; cursor: zoom-out; }
+#lance-lb.open { display: flex; }
+#lance-lb .lance-lb-img { max-width: 95vw; max-height: 92vh; object-fit: contain; user-select: none; box-shadow: 0 4px 24px rgba(0,0,0,0.6); cursor: default; }
+#lance-lb button { position: absolute; background: rgba(255,255,255,0.08); color: #fff; border: 0; cursor: pointer; padding: 6px 14px; line-height: 1; font-family: inherit; }
+#lance-lb button:hover { background: rgba(255,255,255,0.2); }
+#lance-lb .lance-lb-close { top: 14px; right: 18px; font-size: 30px; padding: 2px 12px; }
+#lance-lb .lance-lb-prev, #lance-lb .lance-lb-next { top: 50%; transform: translateY(-50%); font-size: 36px; padding: 8px 18px; }
+#lance-lb .lance-lb-prev { left: 18px; }
+#lance-lb .lance-lb-next { right: 18px; }
+#lance-lb .lance-lb-counter { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-family: ui-monospace, Menlo, monospace; font-size: 12px; letter-spacing: 0.5px; }
+@media (max-width: 600px) {
+  #lance-lb .lance-lb-prev, #lance-lb .lance-lb-next { font-size: 28px; padding: 6px 12px; }
+}
+body { padding-bottom: 3.5em; }
+.counter { position: fixed; bottom: 0; left: 2em; width: 120px; text-align: center; padding: 0.6em 0; background: #fff; font-size: 0.9em; z-index: 100; box-sizing: border-box; }
+@media (max-width: 600px) { body { padding-bottom: 1em; } .counter { position: static; left: auto; bottom: auto; width: auto; text-align: center; padding: 1em; margin-top: 2em; background: transparent; z-index: auto; } }
+.counter-number { font-family: "Courier New", Courier, monospace; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<nav>
+<ul>
+<li><a href="index.html">home</a></li>
+<li><a href="projects.html">projects</a></li>
+<li><a href="vanlife.html">vanlife</a></li>
+<li><a href="photo.html">photography</a></li>
+<!-- <li><a href="resume.html">resumé</a></li> -->
+<li><a href="nostalgia.html">nostalgia</a></li>
+<li><a href="contact.html">contact</a></li>
+</ul>
+
+<!-- o.O -->
+</nav>
+
+<main>
+<h1>guestbook</h1>
+
+<p>Sign my guestbook. Anyone can. <em>Name</em> and <em>message</em> are required;
+email is optional and never shown publicly.</p>
+
+<form id="gb-form" style="margin-bottom:2em">
+  <p>
+    <label style="display:block;font-size:13px;color:#444;margin-bottom:2px">Name *</label>
+    <input type="text" name="name" required maxlength="100" style="width:100%;max-width:400px;padding:4px 6px;border:1px solid #888;font-family:inherit;font-size:14px">
+  </p>
+  <p>
+    <label style="display:block;font-size:13px;color:#444;margin-bottom:2px">Email (optional)</label>
+    <input type="email" name="email" maxlength="320" style="width:100%;max-width:400px;padding:4px 6px;border:1px solid #888;font-family:inherit;font-size:14px">
+  </p>
+  <p>
+    <label style="display:block;font-size:13px;color:#444;margin-bottom:2px">Message *</label>
+    <textarea name="message" required maxlength="2000" rows="5" style="width:100%;max-width:600px;padding:4px 6px;border:1px solid #888;font-family:inherit;font-size:14px;box-sizing:border-box"></textarea>
+  </p>
+  <p>
+    <label style="display:block;font-size:13px;color:#444;margin-bottom:2px">What is 3 &times; 3?</label>
+    <input type="text" name="captcha" required maxlength="20" style="width:120px;padding:4px 6px;border:1px solid #888;font-family:inherit;font-size:14px" autocomplete="off">
+    <span style="color:#888;font-size:12px;margin-left:8px">just so I know you're not a bot</span>
+  </p>
+  <p>
+    <button type="submit" id="gb-submit" style="padding:6px 16px;background:#fff;border:1px solid #888;font-family:inherit;font-size:14px;cursor:pointer">Sign guestbook</button>
+    <span id="gb-status" style="margin-left:10px;font-size:13px"></span>
+  </p>
+</form>
+
+<div id="gb-source-block" style="display:none;border-top:1px solid #ccc;margin-top:1.5em;padding-top:1em;margin-bottom:2em">
+  <p>Thanks for signing! Quick one &mdash; <strong>how did you find lance.net?</strong></p>
+  <form id="gb-source-form">
+    <p>
+      <input type="text" name="source" required maxlength="500" style="width:100%;max-width:600px;padding:4px 6px;border:1px solid #888;font-family:inherit;font-size:14px;box-sizing:border-box">
+    </p>
+    <p>
+      <button type="submit" style="padding:6px 16px;background:#fff;border:1px solid #888;font-family:inherit;font-size:14px;cursor:pointer">Submit</button>
+      <span id="gb-source-status" style="margin-left:10px;font-size:13px"></span>
+    </p>
+  </form>
+</div>
+
+<h2 style="border-top:1px solid #ccc;padding-top:1em;margin-top:2em">Entries</h2>
+<div id="gb-entries">Loading&hellip;</div>
+
+<script>
+(function(){
+  var API="https://admin.lance.net/api/guestbook";
+  var lastId=null;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function fmt(s){var d=new Date(s);return d.toLocaleString();}
+  function load(){
+    var el=document.getElementById("gb-entries");
+    fetch(API+"/entries",{mode:"cors"}).then(function(r){return r.json();}).then(function(d){
+      if(!d.entries||!d.entries.length){el.innerHTML="<p style='color:#888'>No entries yet. Be the first.</p>";return;}
+      el.innerHTML="";
+      d.entries.forEach(function(e){
+        var row=document.createElement("div");
+        row.style.borderBottom="1px solid #ddd";
+        row.style.padding="0.7em 0";
+        var head=document.createElement("div");
+        head.style.fontSize="12px";head.style.color="#666";
+        head.innerHTML="<strong>"+esc(e.name)+"</strong> &mdash; "+esc(fmt(e.created_at));
+        var msg=document.createElement("p");
+        msg.style.margin="0.3em 0 0";msg.style.whiteSpace="pre-wrap";
+        msg.textContent=e.message;
+        row.appendChild(head);row.appendChild(msg);
+        el.appendChild(row);
+      });
+    }).catch(function(){el.innerHTML="<p style='color:#c00'>Couldn't load entries.</p>";});
+  }
+  document.getElementById("gb-form").addEventListener("submit",function(e){
+    e.preventDefault();
+    var btn=document.getElementById("gb-submit");
+    var st=document.getElementById("gb-status");
+    btn.disabled=true;st.textContent="Saving…";st.style.color="#666";
+    var fd=new FormData(e.target);
+    var body={name:fd.get("name"),email:fd.get("email")||null,message:fd.get("message"),captcha:fd.get("captcha")};
+    fetch(API+"/sign",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(body),mode:"cors"})
+      .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+      .then(function(res){
+        btn.disabled=false;
+        if(!res.ok){st.textContent="Failed: "+(res.d.error||"unknown");st.style.color="#c00";return;}
+        st.textContent="Signed.";st.style.color="#080";
+        e.target.reset();
+        lastId=res.d.id;
+        document.getElementById("gb-source-block").style.display="block";
+        load();
+      });
+  });
+  document.getElementById("gb-source-form").addEventListener("submit",function(e){
+    e.preventDefault();
+    if(!lastId)return;
+    var st=document.getElementById("gb-source-status");
+    st.textContent="Saving…";
+    var fd=new FormData(e.target);
+    fetch(API+"/source",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({id:lastId,source:fd.get("source")}),mode:"cors"})
+      .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d};});})
+      .then(function(res){
+        if(!res.ok){st.textContent="Failed: "+(res.d.error||"unknown");st.style.color="#c00";return;}
+        st.textContent="Thanks!";st.style.color="#080";
+      });
+  });
+  load();
+})();
+</script></main>
+
+<div class="counter">
+<div class="counter-row"><a href="/guestbook.html" style="text-decoration: underline">sign the guestbook</a></div><div class="counter-row"><span class="counter-label">you are visitor</span></div><div class="counter-row"><span class="counter-label"></span><span class="counter-number" style="font-family:"Courier New", Courier, monospace;font-weight:600" data-counter>&hellip;</span><span class="counter-label"></span></div>
+</div>
+<script src="https://admin.lance.net/api/counter?scope=lance_net&pad=6&start=1111" defer></script>
+<script>
+(function(){
+  var CLASS="gallery";
+  if(!CLASS)return;
+  var IMG=/\.(jpe?g|png|webp|gif|avif|bmp|svg)(\?|#|$)/i;
+  var overlay,imgEl,counterEl,srcs=[],cur=0;
+  function build(){
+    overlay=document.createElement('div');
+    overlay.id='lance-lb';
+    overlay.innerHTML='<button class="lance-lb-close" aria-label="Close">\u00d7</button>'+
+      '<button class="lance-lb-prev" aria-label="Previous">\u2039</button>'+
+      '<button class="lance-lb-next" aria-label="Next">\u203a</button>'+
+      '<img class="lance-lb-img" alt="">'+
+      '<div class="lance-lb-counter"></div>';
+    document.body.appendChild(overlay);
+    imgEl=overlay.querySelector('.lance-lb-img');
+    counterEl=overlay.querySelector('.lance-lb-counter');
+    overlay.querySelector('.lance-lb-close').addEventListener('click',function(e){e.stopPropagation();closeLb();});
+    overlay.querySelector('.lance-lb-prev').addEventListener('click',function(e){e.stopPropagation();prev();});
+    overlay.querySelector('.lance-lb-next').addEventListener('click',function(e){e.stopPropagation();next();});
+    imgEl.addEventListener('click',function(e){e.stopPropagation();});
+    overlay.addEventListener('click',function(e){if(e.target===overlay)closeLb();});
+  }
+  function openLb(images,startIdx){
+    if(!overlay)build();
+    srcs=images;cur=startIdx;
+    update();
+    overlay.classList.add('open');
+    document.body.style.overflow='hidden';
+    document.addEventListener('keydown',onKey);
+  }
+  function closeLb(){
+    if(!overlay)return;
+    overlay.classList.remove('open');
+    document.body.style.overflow='';
+    document.removeEventListener('keydown',onKey);
+  }
+  function update(){
+    imgEl.src=srcs[cur];
+    counterEl.textContent=(cur+1)+' / '+srcs.length;
+  }
+  function prev(){cur=(cur-1+srcs.length)%srcs.length;update();}
+  function next(){cur=(cur+1)%srcs.length;update();}
+  function onKey(e){
+    if(e.key==='Escape')closeLb();
+    else if(e.key==='ArrowLeft')prev();
+    else if(e.key==='ArrowRight')next();
+  }
+  function init(){
+    var galleries=document.getElementsByClassName(CLASS);
+    for(var g=0;g<galleries.length;g++){
+      var links=galleries[g].querySelectorAll('a');
+      var imgs=[];
+      for(var i=0;i<links.length;i++){if(IMG.test(links[i].href))imgs.push(links[i]);}
+      if(!imgs.length)continue;
+      var hrefs=imgs.map(function(a){return a.href;});
+      imgs.forEach(function(a,idx){
+        a.addEventListener('click',function(e){
+          if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1)return; // let middle/cmd-click open in tab
+          e.preventDefault();
+          openLb(hrefs,idx);
+        });
+      });
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+</body>
+</html>

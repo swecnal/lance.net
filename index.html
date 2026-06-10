@@ -26,6 +26,8 @@ main { font-family: "Courier New", Courier, monospace; }
 @media (max-width: 600px) {
   #lance-lb .lance-lb-prev, #lance-lb .lance-lb-next { font-size: 28px; padding: 6px 12px; }
 }
+.theme-switcher { position: absolute; bottom: 2px; left: 2px; font-size: 11px; color: #aaa; text-decoration: none; opacity: 0.5; line-height: 1; padding: 2px 4px; }
+.theme-switcher:hover { opacity: 1; }
 body { padding-bottom: 3.5em; }
 .counter { position: fixed; bottom: 0; left: 2em; width: 120px; text-align: center; padding: 0.6em 0; background: #fff; font-size: 0.9em; z-index: 100; box-sizing: border-box; }
 @media (max-width: 600px) { body { padding-bottom: 1em; } .counter { position: static; left: auto; bottom: auto; width: auto; text-align: center; padding: 1em; margin-top: 2em; background: transparent; z-index: auto; } }
@@ -66,9 +68,77 @@ body { padding-bottom: 3.5em; }
 anyways. work-in-progress. feel free to <a href="contact.html">get in touch</a> if you'd like</p></main>
 
 <div class="counter">
-<div class="counter-row"><span class="counter-label">you are visitor</span></div><div class="counter-row"><span class="counter-label"></span><span class="counter-number" style="font-family:"Courier New", Courier, monospace;font-weight:600" data-counter>&hellip;</span><span class="counter-label"></span></div><div class="counter-row"><a href="/guestbook.html" style="text-decoration: underline">sign the guestbook</a></div>
+<div class="counter-row"><span class="counter-label">you are visitor</span></div><div class="counter-row"><span class="counter-label"></span><span class="counter-number" style="font-family:"Courier New", Courier, monospace;font-weight:600" data-counter>&hellip;</span><span class="counter-label"></span></div><div class="counter-row"><a href="/guestbook.html" style="text-decoration: underline">sign the guestbook</a></div><a href="#" class="theme-switcher" aria-label="theme">#</a>
 </div>
 <script src="https://admin.lance.net/api/counter?scope=lance_net&pad=6&start=1111" defer></script>
+<script>
+(function(){
+  var THEMES = [{"id":"3aadedce-418c-45d6-b394-bf3387702714","name":"default","bgColor":null,"navFont":null,"navFontWeight":null,"navColor":null,"contentFont":null,"contentFontWeight":null,"contentColor":null}];
+  var KEY = "lance.net-theme";
+  function applyTheme(t){
+    var css = [];
+    if (t.bgColor) css.push("body{background-color:"+t.bgColor+";}");
+    var nav = [];
+    if (t.navFont) nav.push("font-family:"+t.navFont);
+    if (t.navFontWeight) nav.push("font-weight:"+t.navFontWeight);
+    if (t.navColor) nav.push("color:"+t.navColor);
+    if (nav.length) css.push("nav,nav a{"+nav.join(";")+";}");
+    var main = [];
+    if (t.contentFont) main.push("font-family:"+t.contentFont);
+    if (t.contentFontWeight) main.push("font-weight:"+t.contentFontWeight);
+    if (t.contentColor) main.push("color:"+t.contentColor);
+    if (main.length) css.push("main,main a{"+main.join(";")+";}");
+    var el = document.getElementById("lance-theme-override");
+    if (!el) { el = document.createElement("style"); el.id = "lance-theme-override"; document.head.appendChild(el); }
+    el.textContent = css.join("\n");
+  }
+  function clearTheme(){
+    var el = document.getElementById("lance-theme-override");
+    if (el) el.textContent = "";
+  }
+  try {
+    var savedId = sessionStorage.getItem(KEY);
+    if (savedId) {
+      var found = THEMES.filter(function(x){ return x.id === savedId; })[0];
+      if (found) applyTheme(found);
+    }
+  } catch(e) {}
+  document.addEventListener("DOMContentLoaded", function(){
+    var btn = document.querySelector(".theme-switcher");
+    if (!btn) return;
+    btn.addEventListener("click", function(e){
+      e.preventDefault();
+      var existing = document.getElementById("lance-theme-menu");
+      if (existing) { existing.remove(); return; }
+      var menu = document.createElement("div");
+      menu.id = "lance-theme-menu";
+      menu.setAttribute("style", "position:fixed;left:2em;bottom:3em;background:#fff;border:1px solid #888;padding:4px 0;font-size:13px;z-index:99999;font-family:sans-serif;color:#000;min-width:120px;box-shadow:0 2px 8px rgba(0,0,0,0.15);");
+      function row(label, onclick){
+        var d = document.createElement("div");
+        d.textContent = label;
+        d.setAttribute("style", "cursor:pointer;padding:5px 12px;");
+        d.onmouseover = function(){ d.style.background = "#eef"; };
+        d.onmouseout = function(){ d.style.background = ""; };
+        d.onclick = onclick;
+        menu.appendChild(d);
+      }
+      row("— default —", function(){ try { sessionStorage.removeItem(KEY); } catch(e){} clearTheme(); menu.remove(); });
+      THEMES.forEach(function(t){
+        row(t.name, function(){ try { sessionStorage.setItem(KEY, t.id); } catch(e){} applyTheme(t); menu.remove(); });
+      });
+      document.body.appendChild(menu);
+      setTimeout(function(){
+        document.addEventListener("click", function dismiss(ev){
+          if (!menu.contains(ev.target) && ev.target !== btn) {
+            menu.remove();
+            document.removeEventListener("click", dismiss);
+          }
+        });
+      }, 0);
+    });
+  });
+})();
+</script>
 <script>
 (function(){
   var CLASS="gallery";

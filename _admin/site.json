@@ -44,8 +44,8 @@
   "guestbookLinkWeight": null,
   "guestbookLinkItalic": false,
   "guestbookLinkUnderline": true,
-  "navFont": "\"Times New Roman\", Times, serif",
-  "contentFont": "Monaco, monospace",
+  "navFont": "\"Courier New\", Courier, monospace",
+  "contentFont": "\"Courier New\", Courier, monospace",
   "forwardersDirectory": "fwd",
   "wecnalForwardersDirectory": "fwd"
 }

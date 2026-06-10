@@ -57,10 +57,10 @@
       "name": "default",
       "bgColor": null,
       "navFont": null,
-      "navFontWeight": null,
+      "navFontWeight": "500",
       "navColor": null,
       "contentFont": null,
-      "contentFontWeight": null,
+      "contentFontWeight": "500",
       "contentColor": null
     },
     {

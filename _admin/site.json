@@ -44,8 +44,25 @@
   "guestbookLinkWeight": null,
   "guestbookLinkItalic": false,
   "guestbookLinkUnderline": true,
+  "guestbookLinkSpacerPx": null,
   "navFont": "\"Courier New\", Courier, monospace",
+  "navFontWeight": null,
   "contentFont": "\"Courier New\", Courier, monospace",
+  "contentFontWeight": null,
   "forwardersDirectory": "fwd",
-  "wecnalForwardersDirectory": "fwd"
+  "wecnalForwardersDirectory": "fwd",
+  "altThemes": [
+    {
+      "id": "3aadedce-418c-45d6-b394-bf3387702714",
+      "name": "default",
+      "bgColor": null,
+      "navFont": null,
+      "navFontWeight": null,
+      "navColor": null,
+      "contentFont": null,
+      "contentFontWeight": null,
+      "contentColor": null
+    }
+  ],
+  "themeSwitcherEnabled": true
 }

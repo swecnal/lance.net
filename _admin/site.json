@@ -46,5 +46,5 @@
   "guestbookLinkUnderline": true,
   "navFont": "\"Times New Roman\", Times, serif",
   "contentFont": "Monaco, monospace",
-  "forwardersDirectory": "item"
+  "forwardersDirectory": "fwd"
 }

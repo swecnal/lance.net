@@ -73,6 +73,17 @@
       "contentFont": null,
       "contentFontWeight": "600",
       "contentColor": "#00ff41"
+    },
+    {
+      "id": "cb38d8eb-ab94-4965-af40-4189f9eb9ffe",
+      "name": "console",
+      "bgColor": "#292929",
+      "navFont": null,
+      "navFontWeight": "600",
+      "navColor": "#e95420",
+      "contentFont": null,
+      "contentFontWeight": "600",
+      "contentColor": "#e95420"
     }
   ],
   "themeSwitcherEnabled": true

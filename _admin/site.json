@@ -38,7 +38,7 @@
   "photoboxClassName": "gallery",
   "guestbookEnabled": true,
   "guestbookLinkPosition": "below",
-  "guestbookLinkText": "guestbook view / sign",
+  "guestbookLinkText": "guestbook",
   "guestbookLinkColor": null,
   "guestbookLinkFont": null,
   "guestbookLinkWeight": null,

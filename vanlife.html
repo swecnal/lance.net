@@ -62,11 +62,16 @@ body { padding-bottom: 3.5em; }
 <script src="https://admin.lance.net/api/counter?scope=lance_net&pad=6&start=1111" defer></script>
 <script>
 (function(){
-  var THEMES = [{"id":"3aadedce-418c-45d6-b394-bf3387702714","name":"default","bgColor":null,"navFont":null,"navFontWeight":"500","navColor":null,"contentFont":null,"contentFontWeight":"500","contentColor":null},{"id":"2889e11e-5e3e-472d-b88f-b1ff909dfcbd","name":"matrix","bgColor":"#000000","navFont":null,"navFontWeight":"600","navColor":"#00ff41","contentFont":null,"contentFontWeight":"600","contentColor":"#00ff41"},{"id":"cb38d8eb-ab94-4965-af40-4189f9eb9ffe","name":"console","bgColor":"#292929","navFont":null,"navFontWeight":"600","navColor":"#e95420","contentFont":null,"contentFontWeight":"600","contentColor":"#e95420"}];
+  var THEMES = [{"id":"3aadedce-418c-45d6-b394-bf3387702714","name":"default","bgColor":null,"navFont":null,"navFontWeight":"500","navColor":null,"contentFont":null,"contentFontWeight":"500","contentColor":null,"linkColor":null,"vlinkColor":null,"alinkColor":null,"switcherChar":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"},{"id":"2889e11e-5e3e-472d-b88f-b1ff909dfcbd","name":"matrix","bgColor":"#000000","navFont":null,"navFontWeight":"600","navColor":"#00ff41","contentFont":null,"contentFontWeight":"600","contentColor":"#00ff41","linkColor":"#00ff41","vlinkColor":"#00b100","alinkColor":"#00ff41","switcherChar":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"},{"id":"cb38d8eb-ab94-4965-af40-4189f9eb9ffe","name":"console","bgColor":"#292929","navFont":null,"navFontWeight":"600","navColor":"#e95420","contentFont":null,"contentFontWeight":"600","contentColor":"#e95420","linkColor":"#e95420","vlinkColor":"#b70116","alinkColor":"#e95420","switcherChar":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"}];
   var KEY = "lance.net-theme";
   function applyTheme(t){
     var css = [];
-    if (t.bgColor) css.push("body{background-color:"+t.bgColor+";}");
+    if (t.bgColor) {
+      css.push("body{background-color:"+t.bgColor+";}");
+      // Counter box bleeds the body background so it doesn't punch a hole in
+      // the theme. Lance can override individually later if he wants.
+      css.push(".counter{background-color:"+t.bgColor+";}");
+    }
     var nav = [];
     if (t.navFont) nav.push("font-family:"+t.navFont);
     if (t.navFontWeight) nav.push("font-weight:"+t.navFontWeight);
@@ -77,13 +82,27 @@ body { padding-bottom: 3.5em; }
     if (t.contentFontWeight) main.push("font-weight:"+t.contentFontWeight);
     if (t.contentColor) main.push("color:"+t.contentColor);
     if (main.length) css.push("main,main a{"+main.join(";")+";}");
+    // Site-wide link state colors (excluding the # switcher, which has its own).
+    if (t.linkColor)  css.push("a:link:not(.theme-switcher){color:"+t.linkColor+";}");
+    if (t.vlinkColor) css.push("a:visited:not(.theme-switcher){color:"+t.vlinkColor+";}");
+    if (t.alinkColor) css.push("a:active:not(.theme-switcher){color:"+t.alinkColor+";}");
+    // The "#" switcher gets its own colors so it stays visible against any theme.
+    if (t.switcherColor)      css.push(".theme-switcher{color:"+t.switcherColor+";opacity:1;}");
+    if (t.switcherLinkColor)  css.push(".theme-switcher:link{color:"+t.switcherLinkColor+";}");
+    if (t.switcherVlinkColor) css.push(".theme-switcher:visited{color:"+t.switcherVlinkColor+";}");
+    if (t.switcherAlinkColor) css.push(".theme-switcher:active{color:"+t.switcherAlinkColor+";}");
     var el = document.getElementById("lance-theme-override");
     if (!el) { el = document.createElement("style"); el.id = "lance-theme-override"; document.head.appendChild(el); }
     el.textContent = css.join("\n");
+    // Swap the switcher character to whatever this theme says.
+    var btn = document.querySelector(".theme-switcher");
+    if (btn) btn.textContent = (typeof t.switcherChar === "string" && t.switcherChar.length > 0) ? t.switcherChar : "#";
   }
   function clearTheme(){
     var el = document.getElementById("lance-theme-override");
     if (el) el.textContent = "";
+    var btn = document.querySelector(".theme-switcher");
+    if (btn) btn.textContent = "#";
   }
   try {
     var savedId = sessionStorage.getItem(KEY);

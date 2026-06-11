@@ -61,7 +61,15 @@
       "navColor": null,
       "contentFont": null,
       "contentFontWeight": "500",
-      "contentColor": null
+      "contentColor": null,
+      "linkColor": null,
+      "vlinkColor": null,
+      "alinkColor": null,
+      "switcherChar": null,
+      "switcherColor": "#8a8a8a",
+      "switcherLinkColor": "#8a8a8a",
+      "switcherVlinkColor": "#8a8a8a",
+      "switcherAlinkColor": "#8a8a8a"
     },
     {
       "id": "2889e11e-5e3e-472d-b88f-b1ff909dfcbd",
@@ -72,7 +80,15 @@
       "navColor": "#00ff41",
       "contentFont": null,
       "contentFontWeight": "600",
-      "contentColor": "#00ff41"
+      "contentColor": "#00ff41",
+      "linkColor": "#00ff41",
+      "vlinkColor": "#00b100",
+      "alinkColor": "#00ff41",
+      "switcherChar": null,
+      "switcherColor": "#8a8a8a",
+      "switcherLinkColor": "#8a8a8a",
+      "switcherVlinkColor": "#8a8a8a",
+      "switcherAlinkColor": "#8a8a8a"
     },
     {
       "id": "cb38d8eb-ab94-4965-af40-4189f9eb9ffe",
@@ -83,7 +99,15 @@
       "navColor": "#e95420",
       "contentFont": null,
       "contentFontWeight": "600",
-      "contentColor": "#e95420"
+      "contentColor": "#e95420",
+      "linkColor": "#e95420",
+      "vlinkColor": "#b70116",
+      "alinkColor": "#e95420",
+      "switcherChar": null,
+      "switcherColor": "#8a8a8a",
+      "switcherLinkColor": "#8a8a8a",
+      "switcherVlinkColor": "#8a8a8a",
+      "switcherAlinkColor": "#8a8a8a"
     }
   ],
   "themeSwitcherEnabled": true

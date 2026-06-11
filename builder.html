@@ -28,7 +28,7 @@ main { font-family: "Courier New", Courier, monospace; }
 }
 .theme-switcher { position: absolute; bottom: 0.6em; left: -1.4em; font-size: 12px; color: #aaa; text-decoration: none; opacity: 0.5; line-height: 1; padding: 2px 4px; }
 .theme-switcher:hover { opacity: 1; }
-@media (max-width: 600px) { .theme-switcher { position: fixed; bottom: 10px; right: 10px; left: auto; top: auto; font-size: 18px; padding: 6px 10px; opacity: 0.65; background: rgba(255,255,255,0.85); border-radius: 4px; z-index: 200; line-height: 1; } }
+@media (max-width: 600px) { .theme-switcher { position: static; display: inline-block; margin-top: 0.6em; left: auto; right: auto; top: auto; bottom: auto; padding: 4px 8px; background: transparent; border-radius: 0; opacity: 0.7; } }
 body { padding-bottom: 3.5em; }
 .counter { position: fixed; bottom: 0; left: 2em; width: 120px; text-align: center; padding: 0.6em 0; background: #fff; font-size: 0.9em; z-index: 100; box-sizing: border-box; }
 @media (max-width: 600px) { body { padding-bottom: 1em; } .counter { position: static; left: auto; bottom: auto; width: auto; text-align: center; padding: 1em; margin-top: 2em; background: transparent; z-index: auto; } }

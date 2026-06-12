@@ -53,6 +53,28 @@
   "wecnalForwardersDirectory": "fwd",
   "altThemes": [
     {
+      "id": "e8fe0d82-b4e7-436e-8be3-445eafc1de63",
+      "name": "default",
+      "bgColor": null,
+      "navFont": null,
+      "navFontWeight": null,
+      "navColor": null,
+      "contentFont": null,
+      "contentFontWeight": null,
+      "contentColor": null,
+      "counterBgColor": null,
+      "counterTextColor": null,
+      "linkColor": null,
+      "vlinkColor": null,
+      "alinkColor": null,
+      "switcherChar": null,
+      "switcherSize": null,
+      "switcherColor": null,
+      "switcherLinkColor": null,
+      "switcherVlinkColor": null,
+      "switcherAlinkColor": null
+    },
+    {
       "id": "2889e11e-5e3e-472d-b88f-b1ff909dfcbd",
       "name": "matrix",
       "bgColor": "#000000",

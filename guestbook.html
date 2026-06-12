@@ -254,7 +254,7 @@ email is optional and never shown publicly.</p>
           "color:#444;cursor:default;letter-spacing:0.02em;");
         menu.appendChild(titleEl);
       }
-      row("— default —", function(){ try { sessionStorage.removeItem(KEY); } catch(e){} clearTheme(); menu.remove(); });
+      row("default", function(){ try { sessionStorage.removeItem(KEY); } catch(e){} clearTheme(); menu.remove(); });
       THEMES.forEach(function(t){
         row(t.name, function(){ try { sessionStorage.setItem(KEY, t.id); } catch(e){} applyTheme(t); menu.remove(); });
       });

@@ -95,7 +95,8 @@ body { padding-bottom: 3.5em; }
 <script src="https://admin.lance.net/api/counter?scope=lance_net&pad=6&start=1111" defer></script>
 <script>
 (function(){
-  var THEMES = [{"id":"3aadedce-418c-45d6-b394-bf3387702714","name":"default","bgColor":null,"navFont":null,"navFontWeight":"100","navColor":null,"contentFont":null,"contentFontWeight":"100","contentColor":"#ff0000","counterBgColor":null,"counterTextColor":null,"linkColor":null,"vlinkColor":null,"alinkColor":null,"switcherChar":null,"switcherSize":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"},{"id":"2889e11e-5e3e-472d-b88f-b1ff909dfcbd","name":"matrix","bgColor":"#000000","navFont":null,"navFontWeight":"600","navColor":"#00ff41","contentFont":null,"contentFontWeight":"600","contentColor":"#00ff41","counterBgColor":"#000000","counterTextColor":"#00ff41","linkColor":"#00ff41","vlinkColor":"#00b100","alinkColor":"#00ff41","switcherChar":null,"switcherSize":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"},{"id":"cb38d8eb-ab94-4965-af40-4189f9eb9ffe","name":"console","bgColor":"#121212","navFont":"Courier, \"Courier New\", monospace","navFontWeight":"600","navColor":"#e95420","contentFont":"Courier, \"Courier New\", monospace","contentFontWeight":"600","contentColor":"#e95420","counterBgColor":"#121212","counterTextColor":"#e95420","linkColor":"#e95420","vlinkColor":"#b70116","alinkColor":"#e95420","switcherChar":null,"switcherSize":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"}];
+  var THEMES = [{"id":"2889e11e-5e3e-472d-b88f-b1ff909dfcbd","name":"matrix","bgColor":"#000000","navFont":null,"navFontWeight":"600","navColor":"#00ff41","contentFont":null,"contentFontWeight":"600","contentColor":"#00ff41","counterBgColor":"#000000","counterTextColor":"#00ff41","linkColor":"#00ff41","vlinkColor":"#00b100","alinkColor":"#00ff41","switcherChar":null,"switcherSize":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"},{"id":"cb38d8eb-ab94-4965-af40-4189f9eb9ffe","name":"console","bgColor":"#121212","navFont":"Courier, \"Courier New\", monospace","navFontWeight":"600","navColor":"#e95420","contentFont":"Courier, \"Courier New\", monospace","contentFontWeight":"600","contentColor":"#e95420","counterBgColor":"#121212","counterTextColor":"#e95420","linkColor":"#e95420","vlinkColor":"#b70116","alinkColor":"#e95420","switcherChar":null,"switcherSize":null,"switcherColor":"#8a8a8a","switcherLinkColor":"#8a8a8a","switcherVlinkColor":"#8a8a8a","switcherAlinkColor":"#8a8a8a"}];
+  var MENU_TITLE = "";
   var KEY = "lance.net-theme";
   function applyTheme(t){
     var css = [];
@@ -173,6 +174,15 @@ body { padding-bottom: 3.5em; }
         d.onmouseout = function(){ d.style.background = ""; };
         d.onclick = onclick;
         menu.appendChild(d);
+      }
+      // Optional non-clickable title at the top of the menu.
+      if (MENU_TITLE) {
+        var titleEl = document.createElement("div");
+        titleEl.textContent = MENU_TITLE;
+        titleEl.setAttribute("style",
+          "padding:" + itemPad + ";font-weight:600;border-bottom:1px solid #ddd;" +
+          "color:#444;cursor:default;letter-spacing:0.02em;");
+        menu.appendChild(titleEl);
       }
       row("— default —", function(){ try { sessionStorage.removeItem(KEY); } catch(e){} clearTheme(); menu.remove(); });
       THEMES.forEach(function(t){

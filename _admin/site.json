@@ -61,7 +61,7 @@
       "navColor": null,
       "contentFont": null,
       "contentFontWeight": "100",
-      "contentColor": null,
+      "contentColor": "#ff0000",
       "counterBgColor": null,
       "counterTextColor": null,
       "linkColor": null,

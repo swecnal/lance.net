@@ -123,11 +123,18 @@ body { padding-bottom: 3.5em; }
     var btn = document.querySelector(".theme-switcher");
     if (btn) btn.textContent = "#";
   }
+  // THEMES[0] is treated as the site's default theme — applied on first load
+  // when the visitor hasn't picked anything from the menu. Renaming/editing it
+  // in /settings changes how the site looks by default.
   try {
     var savedId = sessionStorage.getItem(KEY);
+    var defaultTheme = THEMES[0] || null;
     if (savedId) {
       var found = THEMES.filter(function(x){ return x.id === savedId; })[0];
       if (found) applyTheme(found);
+      else if (defaultTheme) applyTheme(defaultTheme);
+    } else if (defaultTheme) {
+      applyTheme(defaultTheme);
     }
   } catch(e) {}
   document.addEventListener("DOMContentLoaded", function(){
@@ -166,8 +173,18 @@ body { padding-bottom: 3.5em; }
           "color:#444;cursor:default;letter-spacing:0.02em;");
         menu.appendChild(titleEl);
       }
-      row("default", function(){ try { sessionStorage.removeItem(KEY); } catch(e){} clearTheme(); menu.remove(); });
-      THEMES.forEach(function(t){
+      // THEMES[0] is the site's default — clicking it clears sessionStorage
+      // so it stays the default on next visit. Its name (set in /settings) is
+      // the label. Other themes follow.
+      if (THEMES.length > 0) {
+        var dflt = THEMES[0];
+        row(dflt.name || "default", function(){
+          try { sessionStorage.removeItem(KEY); } catch(e){}
+          applyTheme(dflt);
+          menu.remove();
+        });
+      }
+      THEMES.slice(1).forEach(function(t){
         row(t.name, function(){ try { sessionStorage.setItem(KEY, t.id); } catch(e){} applyTheme(t); menu.remove(); });
       });
       document.body.appendChild(menu);

@@ -1,0 +1,101 @@
+When the user says "job" and pastes a job description, execute this full workflow automatically with no clarifying questions:
+
+Step 1 — Fit Score
+Analyze the JD against Lance's resume and give a 0–10 score with a brief summary of the reasoning. Give a clear go/no-go recommendation on applying. If it's a no-go, stop here and explain why. Do not consider that "Degree required" is a hard stop - almost all organizations are able to see the value of a 20+ year career over a paper degree. Mention that this is a gap, but do NOT factor it into the fit score itself. If a match is a 9 or higher, automatically proceed with the rest of these instructions. If it’s under a 9, wait for the user’s go/no-go.
+
+Ideally a job will be a "natural career progression" upwards, in either money (Lance is currently at $150k salary +~ $20k annual bonus) or title (Sr. Manager, Director, etc). However, given that Lance is desperately looking for a new role as his company is doing an RTO in September, he's open to any role he can get, in the following order of preference:
+1. More money, better title/level, remote
+2. More money, same title/level, remote
+3. >$140k/year, better title/level, remote
+4. >$140k/year, same title/level, remote
+5. >$150k/year, better title/level, hybrid within 65 miles of Plymouth, MA
+
+In the same spirit as above, if Lance is QUALIFIED for a role but the career path is different (network operations, IT leadership in general, implementation/onboarding, etc) then that's OK, just note it. At this point the goal is "be 100% remote for the same or better money/title" or "be hybrid for a title or money bump" without "career path" in mind. Lance needs 5 more years of work earning $175k or so before hitting financial independence so he doesn't really give a fuck when push comes to shove, none of it REALLY matters anyways.
+
+Step 2 — Salary Research
+First, check if the JD includes a stated salary or compensation range. If it does, use that as the basis for the salary section — note the range, break it down by base + bonus/OTE if applicable, and give a specific number to write in the "desired salary" field. If no salary is listed in the JD, search levels.fyi, Glassdoor, Salary.com, Payscale, ZipRecruiter, and any other relevant sources for compensation data for that specific role, level, and company. Break down by base + bonus and give an OTE. If company-specific data isn't available, provide a reasoned market-rate estimate and say so. Either way, always end with a specific number to write in the "desired salary" field.
+
+Step 3 - Actual company ID
+Check the JD and see if it's posted by the actual company, or a recruiting company of some sort. If the actual company is not obvious, search the internet for snippets of this JD to see if you can't identify the actual company. Report back that this is either one of these - posted by the company, posted by RECRUITER on behalf of COMPANY, or posted by RECRUITER but couldn't ID the actual company.
+
+At this point, ask the user "Do you want me to proceed with generation?" unless the fit is a 9 or higher, in which case proceed as if the user said “yes”. If the user says “no”, then stop. If “yes”, then do the following:
+
+Step 4 - Keywords
+Pull a list of the top 20 keywords from the JD that an ATS would look for. Make sure that those keywords are in Lance's resume ORGANICALLY, where it makes sense. In the chat, output a list of these keywords, breaking them down to which ones were used and the bullet that they were used in (exact language that was outputted by Claude), and a list of which ones were not in there and why.
+
+From here, stop and ask "Do you want me to proceed?" If the user says "no", then stop. If the user says "yes, but change..." change what the user says to change, then proceed to next steps. If the user says "yes", then proceed to next steps:
+
+Step 5 — Tailored Resume
+Generate a tailored version of Lance Wilkinson's resume (on file in this project) as a PDF. Follow these rules exactly:
+
+- File name is "Lance Wilkinson Resume.pdf". That's it.
+- Mirror the JD's exact terminology where Lance's experience supports it.
+- Reorder bullets within roles to surface the most relevant experience first, but do not reorder the roles themselves - these should remain in chronological order.
+- Lightly reword the summary to reflect the JD's priorities
+- Add or swap skills section terms to match JD language exactly (make sure it makes sense for the user's background per the resume. if in doubt, ask)
+- Never invent experience, metrics, or scope that isn't in the original.
+- For manager-level roles, remove the “functioning as…” language from the resume entirely.
+- For sr. manager / senior manager level roles: change "Functioning as Director of Network Engineering..." to "Functioning as Sr. Manager of Network Engineering..."
+- For director level roles: leave the line as "Functioning as Director of Network Engineering..."
+- For a role that is network operations, change Lance's current job title to "Manager of Network Engineering and Operations". If it's a support-type role, change it to "Manager of Network Engineering & Support".
+- Maximum two pages — NO EXCEPTIONS. If you have to completely cut a bullet point, provide a list of what was cut and why.
+- Page breaks must fall cleanly between roles, never mid-role.
+- Match all formatting from the source resume exactly: font, size, spacing, bullet style, section headers
+
+Step 6 — Cover Letter
+File name is "Lance Wilkinson - Cover Letter.pdf”. This cover letter should be short, sweet, NOT AI SOUNDING, and eye-catching. "AI Sounding" should be avoided at all costs, and includes common writing styles that AI uses time and time again. These can be spotted a mile away and should be avoided at all costs. Cover Letter template is below, notes to Claude are in brackets []:
+
+"Dear Hiring Team, [if there's a listed hiring person in the JD Lance gives you, address it to them]
+
+Three and a half years ago, City Electric Supply had no dedicated network engineering function. Not duct tape and popsicle sticks level, but close; more of a "who wants to figure out how to do this specific thing?"
+
+I've built the department to the point where it now supports 800 plus sites across North America and the Caribbean on a unified, zero-trust network with always-on cellular and satellite failover, supported by a team of four engineers. And I've reduced operating costs by over 1.35 million dollars per year in the process.
+
+The reason I'm writing is that COMPANY's posting reads like a description of the next level of what I've worked so far to build, and the exact type of responsibility I'm looking to tackle head-on.
+
+Building from zero is the throughline of my career. Network support (0 to 5 in under a year) and field implementation (4 to 16 in 18 months) at Toast, and network engineering at CES (0 to 6, plus a 30+ vendor tech network nation-wide).
+
+The time-proven recipie is simple: hire deliberately, give people REAL ownership early, kill manual work with automation, and protect the team's focus from death-by-dashboard. I've learned that when you actually manage the people and lead from the front instead of the org chart, you end up with an engaged, empowered team that solves problems before they climb the chain.
+
+I’d genuinely love the chance to talk through any of it, and I’m excited to connect soon.
+
+Best,
+
+Lance Wilkinson
+hello@lance.net
+(774) 608-2151"
+
+Step 7 - Next Steps document
+Create a single PDF containing sections for all of the following. The name of this PDF should be "Next Steps - Company - Title". For example, if the job was "CEO at Google", the file name should be "Next Steps - CEO - Google". 
+
+Next Steps Section 1 - cold outreach email. Write a cold outreach email that Lance will send to a recruiter or POC he identifies at the company. It should follow this format, with notes to claude in brackets []:
+
+"Hi NAME, [keep this as NAME for Lance to fill in later]
+
+I recently applied for the ROLE at COMPANY, but given the huge overlap and great fit, I wanted to reach out directly as well.
+
+This role caught my attention right away, as I've spent the last 3.5 years building the network engineering function at City Electric Supply from the ground up - running high-availability networks for over 800 geographically distributed retail locations, warehouses, data centers, & remote offices. 
+
+During my tenure I've scaled the team from zero to six network engineers, consolidating ISP connections across all locations ($1.35m/year savings), implemented always-on backup cell & satellite connections, rolled out zero-trust / ZTNA to over 7k users, and developed AI-powerd automation workflows standardizing IaC for scalable network configurations and maintenance. Currently I'm working to bring our in-house ERP software into a hybrid/cloud architecture as well as modernize aging infrastructure across retail locations and warehouses.
+
+What COMPANY is seeking, someone to [simple phrase, potentially taken directly from the JD if it fits/makes sense, that summarizes what the company is looking to achieve], is exactly the type of ownership I’m looking for in a distributed environment I thrive in. 
+
+I'd love to jump on a call if you'd like to put a face to the application - happy to work around your schedule.
+
+Best,"
+
+Next Steps Section 2 
+Write non-AI-sounding answers to these four questions, tailored to the specific JD and company:
+
+1. Why do you want to work here?
+2. What excites you about this role?
+3. Which company value do you most closely align with? (if not in the provided JD, search the internet for the "company values" of this company. If you cannot find anything, state this to the user).
+4. Two additional questions relevant to the JD of your choosing
+
+Next Steps Section 3 - JD
+Simply copy the JD to this section for future reference. Keep all pertinent details that Lance gave you.
+
+Put all three of these files together in a single zip and present the zip to the user. The name of this zip file must be “JOB - COMPANY - ROLE”. For example, if the role were CEO of Google, the zip file name would be “JOB - Google - CEO”.
+
+
+

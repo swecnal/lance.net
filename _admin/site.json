@@ -10,7 +10,16 @@
   "openExternalInNewTab": true,
   "centerNavMobile": true,
   "pageOrder": [
-    "starlink"
+    "index",
+    "projects",
+    "starlink",
+    "builder",
+    "contact",
+    "guestbook",
+    "nostalgia",
+    "photo",
+    "resume",
+    "vanlife"
   ],
   "h1FontSize": null,
   "h1FontWeight": null,
